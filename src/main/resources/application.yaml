@@ -16,6 +16,10 @@ spring:
             - Path=/pedido/**
           filters:
             - StripPrefix=1
+            - name: Retry
+              args:
+                retries: 3
+                statuses: BAD_GATEWAY
         - id: produto-service
           uri: lb://produto-service
           predicates:
